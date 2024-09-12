@@ -25,8 +25,6 @@ function getComputerChoice() {
     return computerOutcome;
 }
 
-getComputerChoice();
-
 function getHumanChoice() {
 
    let humanChoice = parseInt(window.prompt("Please enter your move choice. For Rock enter 0. For Paper enter 1. For Scissors enter 2."));
@@ -48,12 +46,10 @@ function getHumanChoice() {
     return humanOutcome;
 }
 
-getHumanChoice();
-
 function playRound(humanOutcome, computerOutcome) {
 
     //takes outcomes of getComputerChoice and getHumanChoice
-    //if statements that assign outcome, winner, loser
+    //if statements that assign winner
     //increment scores bases on outcome
     let winner = "";
 
@@ -73,4 +69,16 @@ function playRound(humanOutcome, computerOutcome) {
         winner = "It's a tie!";
     }
 
+    if (winner === "Human") {
+        humanScore++;
+    } else if (winner === "The computer") {
+        computerScore++
+    }
+
+    console.log(`The winner is: ${winner}. The score is: You: ${humanScore} The computer: ${computerScore}.`);
 }
+
+const computerMove = getComputerChoice();
+const humanMove = getHumanChoice();
+
+playRound(humanMove, computerMove);
