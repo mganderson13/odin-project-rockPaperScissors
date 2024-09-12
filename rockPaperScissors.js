@@ -50,8 +50,27 @@ function getHumanChoice() {
 
 getHumanChoice();
 
-function playRound() {
+function playRound(humanOutcome, computerOutcome) {
 
+    //takes outcomes of getComputerChoice and getHumanChoice
+    //if statements that assign outcome, winner, loser
+    //increment scores bases on outcome
+    let winner = "";
 
+    if ((humanOutcome === "Rock" && computerOutcome === "Scissors") ||
+         (humanOutcome === "Paper" && computerOutcome === "Rock") ||
+         (humanOutcome === "Scissors" && computerOutcome === "Paper")) {
+
+            winner = "Human";
+
+    } else if ((computerOutcome === "Rock" && humanOutcome === "Scissors") ||
+    (computerOutcome === "Paper" && humanOutcome === "Rock") ||
+    (computerOutcome === "Scissors" && humanOutcome === "Paper")) {
+
+        winner = "The computer";
+
+    } else {
+        winner = "It's a tie!";
+    }
 
 }
