@@ -1,23 +1,28 @@
+//Rock Paper Scissors Game
+
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     //returns rock, paper, or scissors
     //use Math.random by using comparisons 
     //assign variable to each outcome based on number returned form Math.random
 
-    let outcome = ""
+    let computerOutcome = ""
 
-    let chance = Math.floor(Math.random() * 3);
+    let computerChoice = Math.floor(Math.random() * 3);
 
-    if (chance === 0) {
-        outcome = "Rock";
-    } else if (chance === 1) {
-        outcome = "Paper";
+    if (computerChoice === 0) {
+        computerOutcome = "Rock";
+    } else if (computerChoice === 1) {
+        computerOutcome = "Paper";
     } else {
-        outcome = "Scissors"
+        computerOutcome = "Scissors"
     }
 
-    console.log("Computer's move: ", outcome);
+    console.log("Computer's move: ", computerOutcome);
 
-    return outcome;
+    return computerOutcome;
 }
 
 getComputerChoice();
@@ -44,3 +49,9 @@ function getHumanChoice() {
 }
 
 getHumanChoice();
+
+function playRound() {
+
+
+
+}
