@@ -1,49 +1,40 @@
 //Rock Paper Scissors Game
 
+function playGame() {
+    // plays 5 rounds of game
+    // keeps track of score, incrementing is outside of playRound
+    // after 1 round, calls playRound again
+    // declares winner at end using comparison 
+    
 let humanScore = 0;
 let computerScore = 0;
 
-function getComputerChoice() {
-    //returns rock, paper, or scissors
-    //use Math.random by using comparisons 
-    //assign variable to each outcome based on number returned form Math.random
+for (let i = 0; i<5; i++) {
 
-    let computerOutcome = ""
+    //Calls and saves computerOutcome/humanOutcome in variable
+    // Needs to be executed 5 times total to play whole game
+    const computerMove = getComputerChoice();
+    const humanMove = getHumanChoice();
 
-    let computerChoice = Math.floor(Math.random() * 3);
+    const winner = playRound(humanMove, computerMove);
 
-    if (computerChoice === 0) {
-        computerOutcome = "Rock";
-    } else if (computerChoice === 1) {
-        computerOutcome = "Paper";
-    } else {
-        computerOutcome = "Scissors"
+    if (winner === "Human") {
+        humanScore++;
+    } else if (winner === "The computer") {
+        computerScore++
     }
 
-    console.log("Computer's move: ", computerOutcome);
+    console.log(`The score is: You: ${humanScore} The computer: ${computerScore}.`)
+}   
 
-    return computerOutcome;
-}
+ if (humanScore > computerScore) {
+    console.log("You win!");
+ }else if (computerScore > humanScore) {
+    console.log("The computer wins!")
+ } else {
+    console.log("It's a tie!");
+ }
 
-function getHumanChoice() {
-
-   let humanChoice = parseInt(window.prompt("Please enter your move choice. For Rock enter 0. For Paper enter 1. For Scissors enter 2."));
-
-    let humanOutcome = "";
-
-    if (humanChoice === 0) {
-        humanOutcome = "Rock";
-    } else if (humanChoice === 1) {
-        humanOutcome = "Paper";
-    } else if (humanChoice === 2){
-        humanOutcome = "Scissors"
-    } else {
-        alert("Must enter either 0, 1, or 2.")
-    }
-
-    console.log("Your move: ", humanOutcome);
-
-    return humanOutcome;
 }
 
 function playRound(humanOutcome, computerOutcome) {
@@ -69,16 +60,53 @@ function playRound(humanOutcome, computerOutcome) {
         winner = "It's a tie!";
     }
 
-    if (winner === "Human") {
-        humanScore++;
-    } else if (winner === "The computer") {
-        computerScore++
-    }
+    console.log(`The winner is: ${winner}.`);
 
-    console.log(`The winner is: ${winner}. The score is: You: ${humanScore} The computer: ${computerScore}.`);
+    return winner;
 }
 
-const computerMove = getComputerChoice();
-const humanMove = getHumanChoice();
+function getComputerChoice() {
+    //returns rock, paper, or scissors
+    //use Math.random by using comparisons 
+    //assign variable to each outcome based on number returned form Math.random
 
-playRound(humanMove, computerMove);
+    let computerOutcome = ""
+
+    let computerChoice = Math.floor(Math.random() * 3);
+
+    if (computerChoice === 0) {
+        computerOutcome = "Rock";
+    } else if (computerChoice === 1) {
+        computerOutcome = "Paper";
+    } else {
+        computerOutcome = "Scissors"
+    }
+
+    console.log("Computer's move: ", computerOutcome);
+
+    return computerOutcome;
+}
+
+function getHumanChoice() {
+
+   let humanChoice = parseInt(window.prompt("Please enter your move choice. For Rock enter 1. For Paper enter 2. For Scissors enter 3."));
+
+    let humanOutcome = "";
+
+    if (humanChoice === 1) {
+        humanOutcome = "Rock";
+    } else if (humanChoice === 2) {
+        humanOutcome = "Paper";
+    } else if (humanChoice === 3){
+        humanOutcome = "Scissors"
+    } else {
+        alert("Must enter either 1, 2, or 3.")
+    }
+
+    console.log("Your move: ", humanOutcome);
+
+    return humanOutcome;
+}
+
+
+playGame();
