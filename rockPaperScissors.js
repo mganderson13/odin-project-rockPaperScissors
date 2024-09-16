@@ -91,6 +91,12 @@ function getHumanChoice() {
 
    let humanChoice = parseInt(window.prompt("Please enter your move choice. For Rock enter 1. For Paper enter 2. For Scissors enter 3."));
 
+
+    while(humanChoice !== 1 && humanChoice !== 2 && humanChoice !== 3) {
+        alert("Must enter either 1, 2, or 3.")
+        humanChoice = parseInt(window.prompt("Please enter your move choice. For Rock enter 1. For Paper enter 2. For Scissors enter 3."));
+    }
+    
     let humanOutcome = "";
 
     if (humanChoice === 1) {
@@ -99,12 +105,9 @@ function getHumanChoice() {
         humanOutcome = "Paper";
     } else if (humanChoice === 3){
         humanOutcome = "Scissors"
-    } else {
-        alert("Must enter either 1, 2, or 3.")
     }
 
     console.log("Your move: ", humanOutcome);
-
     return humanOutcome;
 }
 
