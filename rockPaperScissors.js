@@ -1,5 +1,14 @@
 //Rock Paper Scissors Game
 
+const rockButton = document.querySelector("#rock");
+const paperButton = document.querySelector("#paper");
+const scissorsButton = document.querySelector("#scissors");
+
+rockButton.addEventListener("click", () => {
+    //replace humanMove with "rock"
+    return playRound(humanMove, computerMove);
+})
+
 function playGame() {
     // plays 5 rounds of game
     // keeps track of score, incrementing is outside of playRound
@@ -9,7 +18,6 @@ function playGame() {
 let humanScore = 0;
 let computerScore = 0;
 
-for (let i = 0; i<5; i++) {
 
     //Calls and saves computerOutcome/humanOutcome in variable
     // Needs to be executed 5 times total to play whole game
@@ -25,6 +33,8 @@ for (let i = 0; i<5; i++) {
     }
 
     console.log(`The score is: You: ${humanScore} The computer: ${computerScore}.`)
+
+// Curly braces in the wrong place??
 }   
 
  if (humanScore > computerScore) {
@@ -35,7 +45,7 @@ for (let i = 0; i<5; i++) {
     console.log("It's a tie!");
  }
 
-}
+
 
 function playRound(humanOutcome, computerOutcome) {
 
