@@ -3,49 +3,33 @@
 const rockButton = document.querySelector("#rock");
 const paperButton = document.querySelector("#paper");
 const scissorsButton = document.querySelector("#scissors");
+const playAgainButton = document.querySelector("#playAgainBtn");
+playAgainButton.style.display = "none";
+
+const resultsDiv = document.querySelector("#results");
+resultsDiv.style.border = "2px solid blue";
+
+const resultsText = document.querySelector("#resultsText");
+const winnerText = document.querySelector("#winnerText");
+
 
 rockButton.addEventListener("click", () => {
     //replace humanMove with "rock"
-    return playRound(humanMove, computerMove);
+    return playRound("Rock", getComputerChoice());
 })
 
-function playGame() {
-    // plays 5 rounds of game
-    // keeps track of score, incrementing is outside of playRound
-    // after 1 round, calls playRound again
-    // declares winner at end using comparison 
-    
+paperButton.addEventListener("click", () => {
+    //replace humanMove with "paper"
+    return playRound("Paper", getComputerChoice());
+})
+
+scissorsButton.addEventListener("click", () => {
+    //replace humanMove with "scissors"
+    return playRound("Scissors", getComputerChoice());
+})
+
 let humanScore = 0;
 let computerScore = 0;
-
-
-    //Calls and saves computerOutcome/humanOutcome in variable
-    // Needs to be executed 5 times total to play whole game
-    const computerMove = getComputerChoice();
-    const humanMove = getHumanChoice();
-
-    const winner = playRound(humanMove, computerMove);
-
-    if (winner === "Human") {
-        humanScore++;
-    } else if (winner === "The computer") {
-        computerScore++
-    }
-
-    console.log(`The score is: You: ${humanScore} The computer: ${computerScore}.`)
-
-// Curly braces in the wrong place??
-}   
-
- if (humanScore > computerScore) {
-    console.log("You win!");
- }else if (computerScore > humanScore) {
-    console.log("The computer wins!")
- } else {
-    console.log("It's a tie!");
- }
-
-
 
 function playRound(humanOutcome, computerOutcome) {
 
@@ -72,8 +56,36 @@ function playRound(humanOutcome, computerOutcome) {
 
     console.log(`The winner is: ${winner}.`);
 
-    return winner;
+if (winner === "Human") {
+         humanScore++;
+     } else if (winner === "The computer") {
+         computerScore++
+     }
+
+    resultsText.textContent= `You played: ${humanOutcome} The computer played: ${computerOutcome} 
+    The winner is: ${winner} The score is: You: ${humanScore} The computer: ${computerScore}.`;
+
+    if (humanScore === 5) {
+        winnerText.textContent= "Good game! You win!";
+        humanScore = 0;
+        computerScore = 0;
+        playAgainButton.style.display = "block";
+        rockButton.disabled= true;
+        paperButton.disabled= true;
+        scissorsButton.disabled= true;
+     }
+    if (computerScore === 5) {
+        winnerText.textContent= "Nice try, but the computer wins!";
+        humanScore = 0;
+        computerScore = 0;
+        playAgainButton.style.display = "block";
+        rockButton.disabled= true;
+        paperButton.disabled= true;
+        scissorsButton.disabled= true;
+     }
 }
+
+
 
 function getComputerChoice() {
     //returns rock, paper, or scissors
@@ -97,29 +109,59 @@ function getComputerChoice() {
     return computerOutcome;
 }
 
-function getHumanChoice() {
+//Function no longer needed, moving score keeping to playRound
 
-   let humanChoice = parseInt(window.prompt("Please enter your move choice. For Rock enter 1. For Paper enter 2. For Scissors enter 3."));
-
-
-    while(humanChoice !== 1 && humanChoice !== 2 && humanChoice !== 3) {
-        alert("Must enter either 1, 2, or 3.")
-        humanChoice = parseInt(window.prompt("Please enter your move choice. For Rock enter 1. For Paper enter 2. For Scissors enter 3."));
-    }
+// function playGame() {
+//     // plays 5 rounds of game
+//     // keeps track of score, incrementing is outside of playRound
+//     // after 1 round, calls playRound again
+//     // declares winner at end using comparison 
     
-    let humanOutcome = "";
-
-    if (humanChoice === 1) {
-        humanOutcome = "Rock";
-    } else if (humanChoice === 2) {
-        humanOutcome = "Paper";
-    } else if (humanChoice === 3){
-        humanOutcome = "Scissors"
-    }
-
-    console.log("Your move: ", humanOutcome);
-    return humanOutcome;
-}
+// let humanScore = 0;
+// let computerScore = 0;
 
 
-playGame();
+//     //Calls and saves computerOutcome/humanOutcome in variable
+//     // Needs to be executed 5 times total to play whole game
+//     const computerMove = getComputerChoice();
+//     const humanMove = getHumanChoice();
+
+//     const winner = playRound(humanMove, computerMove);
+
+//     if (winner === "Human") {
+//         humanScore++;
+//     } else if (winner === "The computer") {
+//         computerScore++
+//     }
+
+//     console.log(`The score is: You: ${humanScore} The computer: ${computerScore}.`)
+
+// }   
+
+//Function no longer needed with the buttons 
+
+// function getHumanChoice() {
+
+//    let humanChoice = parseInt(window.prompt("Please enter your move choice. For Rock enter 1. For Paper enter 2. For Scissors enter 3."));
+
+
+//     while(humanChoice !== 1 && humanChoice !== 2 && humanChoice !== 3) {
+//         alert("Must enter either 1, 2, or 3.")
+//         humanChoice = parseInt(window.prompt("Please enter your move choice. For Rock enter 1. For Paper enter 2. For Scissors enter 3."));
+//     }
+    
+//     let humanOutcome = "";
+
+//     if (humanChoice === 1) {
+//         humanOutcome = "Rock";
+//     } else if (humanChoice === 2) {
+//         humanOutcome = "Paper";
+//     } else if (humanChoice === 3){
+//         humanOutcome = "Scissors"
+//     }
+
+//     console.log("Your move: ", humanOutcome);
+//     return humanOutcome;
+// }
+
+
